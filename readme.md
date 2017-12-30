@@ -3,23 +3,24 @@ note  2017/12/29
 <br/> 
 note  2017/12/30
 <hr/>
- 1.今天看了一天的php的代码。<为了做一个在线搜索音乐的html>
-      记录如下：    --> 网易云音乐为例
-        i.获取音频接口地址<搜索的歌曲>
-            'method'         => 'POST',
-            'url'            => 'http://music.163.com/api/linux/forward',
-            'referer'        => 'http://music.163.com/',
-            'proxy'          => false,
-            'body'           => encode_netease_data(array(//body里面内容需要加密 注①
-                'method'     => 'POST',
-                'url'        => 'http://music.163.com/api/cloudsearch/pc',
-                'params'     => array(
-                    's'      => 查询的歌名,
-                    'type'   => 1,
-                    'offset' => 页码 * 10 - 10,
-                    'limit'  => 10
-                )
-            ))
+
+     1.今天看了一天的php的代码。<为了做一个在线搜索音乐的html>
+          记录如下：    --> 网易云音乐为例
+            i.获取音频接口地址<搜索的歌曲>
+                'method'         => 'POST',
+                'url'            => 'http://music.163.com/api/linux/forward',
+                'referer'        => 'http://music.163.com/',
+                'proxy'          => false,
+                'body'           => encode_netease_data(array(//body里面内容需要加密 注①
+                    'method'     => 'POST',
+                    'url'        => 'http://music.163.com/api/cloudsearch/pc',
+                    'params'     => array(
+                        's'      => 查询的歌名,
+                        'type'   => 1,
+                        'offset' => 页码 * 10 - 10,
+                        'limit'  => 10
+                    )
+                ))
         
             注① ；encode_netease_data
             function encode_netease_data($data)//mkk解密网易云音乐具体步骤
