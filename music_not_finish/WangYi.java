@@ -16,8 +16,9 @@ import com.gargoylesoftware.htmlunit.html.HtmlPage;
 
 
 public class WangYi {
-
+ 
 	
+    
 	/**
 	 * request 信息
 	 * 
