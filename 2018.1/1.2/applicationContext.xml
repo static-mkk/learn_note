@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+    http://www.springframework.org/schema/aop 
+    http://www.springframework.org/schema/aop/spring-aop-3.0.xsd ">
+
+   <!-- 
+   		把dao层和service层的bean放入到spring容器中
+   		把切面放入到spring容器中
+    -->
+    
+    <!-- 自动扫描注解注入 -->
+   	<!-- 
+   	<context:component-scan base-package="cn.kkcoder.learn.aop.selt"></context:component-scan>
+     -->
+    <!-- 手动配置 bean -->
+    <bean  id="StudentDaoImp"  class="cn.kkcoder.learn.aop.self.dao.StudentDaoImp"></bean>
+    <bean  id="StudentServiceImpl"  class="cn.kkcoder.learn.aop.self.service.StudentServiceImpl" >
+    	<property name="studentDaoImp"  ref="StudentDaoImp"/>
+    </bean>
+    
+    
+    <!-- 配置一下  异常处理  bean -->
+    <bean id="getException" class="cn.kkcoder.learn.aop.self.exception.GetExceptionAll" ></bean>
+    
+    <!-- 配置aop信息 -->
+    <aop:config>
+    	<!-- 配置切入点        这里我理解为指定某个/些 方法， 这些方法的执行，会受到切面的影响  
+    		
+    		比如：
+				如果aop:aspect 里面配置了aop：before 属性，那么，    		
+    			这里的所有方法的执行，之前，都会执行 aop：before里面的方法
+    			如果是aop：after ，则 会在执行所有该切点方法后执行after 配置里面method属性指定的方法
+    			
+    			xpression表达式  
+    			
+    			id: 指的是本切入点的id标识
+    			
+    	  -->
+    	<aop:pointcut expression="execution(* cn.kkcoder.learn.aop.self.service.*.*(..))" id="aopid"/>
+    	<!-- 配置切面     
+    		ref属性：                   指向某个类  
+    		
+    		<aop:before mehtod="" pointcut-ref="" >
+    		
+    		mehtod          为ref指向的类的方法          值为方法名             
+    		pointcut-ref    为 指向监控的切入点            值为切入点id
+     	
+     	<aop:after-throwing  throwing="ex"   .. />
+     	ex : 为 异常作为参数传递的参数名称
+     	The name of the method parameter to which the thrown exception must be passed.
+    	 -->
+    	<aop:aspect ref="getException">
+    		<aop:before method="getExceptionMethod" pointcut-ref="aopid"/>
+    	<!-- 
+    		<aop:after method="getException" pointcut-ref="aopid"/>
+    		<aop:after-throwing method="getExceptionMethod" throwing="ex"  pointcut-ref="aopid"/>
+    	 -->	
+    	</aop:aspect>
+    	
+    </aop:config>
+    
+    
+    
+</beans>
