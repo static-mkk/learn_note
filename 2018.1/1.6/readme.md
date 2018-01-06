@@ -26,7 +26,7 @@
 
 5. 在 web.xml 文件中 配置字符集编码  实际上就是把最源头的 request 和 response 的 charset 设置成 UTF-8 <br/>
 
-
+```java
     <filter>                                                           
         <description>字符集过滤器</description>                      
         <filter-name>encodingFilter</filter-name>                   
@@ -42,4 +42,5 @@
     <filter-mapping>                                                     
         <filter-name>encodingFilter</filter-name>                      
         <url-pattern>/*</url-pattern>                               
-    </filter-mapping>                                               
+    </filter-mapping>     
+```    
