@@ -1,7 +1,10 @@
 1.首先是 在 pom 文件里面写上所有的 dependency <br/>
 
 
-<!--spring-mvc 的 依赖包-->                 
+<!--spring-mvc 的 依赖包-->    
+
+```xml
+        <!--这里只是spring web  的两个 jar   所有包，看pom.xml 文件 -->
         <dependency>  
             <groupId>org.springframework</groupId>  
             <artifactId>spring-web</artifactId>  
@@ -16,7 +19,7 @@
             <type>jar</type> 
             <scope>compile</scope>  
         </dependency>  
-        
+```  
         
 2.web.xml 配置 spring-mvc 的 分派器servlet  class  <br/>
 
